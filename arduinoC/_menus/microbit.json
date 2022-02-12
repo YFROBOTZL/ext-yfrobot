@@ -71,5 +71,12 @@
 			["P15(MOSI)", "15"],
 			["P16", "16"]
 		]
+	},
+	"PINMODE":{
+		"menu": [
+			["OUTPUT", "OUTPUT"],
+			["INPUT", "INPUT"],
+			["INPUT_PULLUP", "INPUT_PULLUP"]
+		]
 	}
 }

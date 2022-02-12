@@ -75,19 +75,5 @@
 			["INPUT", "INPUT"],
 			["INPUT_PULLUP", "INPUT_PULLUP"]
 		]
-	},
-	"MODE":{
-		"menu":[
-			["LOOP","LOOP"],
-			["PASSWORD","PASSWORD"],
-			["BUTTON","BUTTON"]
-		]
-	}
-	,
-	"MICMODE":{
-		"menu":[
-			["MIC","MIC"],
-			["MONO","MONO"]
-		]
 	}
 }

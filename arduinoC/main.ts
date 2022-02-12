@@ -82,9 +82,27 @@ enum PIN_DWrite {
     A5
 }
 
+enum OUTPUTMODULE {
+    //% block="LED"
+    LED,
+    //% block="FAN"
+    FAN
+}
+
 
 //% color="#4d9721" iconWidth=50 iconHeight=40
 namespace dotmatrix57 {
+
+    //% block="set [OUTPUTMODULE] on [LEDPIN] [LEDSTATE]" blockType="command"
+    //% OUTPUTMODULE.shadow="dropdownRound" OUTPUTMODULE.options="OUTPUTMODULE" OUTPUTMODULE.defl="LED"
+    //% LEDPIN.shadow="dropdown" LEDPIN.options="PIN_DigitalWrite"
+    //% LEDSTATE.shadow="dropdown" LEDSTATE.options="LEDONOFF" LEDSTATE.defl="HIGH"
+    export function outputModule(parameter: any, block: any) {
+        let outputModule = parameter.OUTPUTMODULE.code;
+        let outputModulePin = parameter.LEDPIN.code;
+        let outputModuleState = parameter.LEDSTATE.code;
+        Generator.addCode(`digitalWrite(${outputModulePin},${outputModuleState});`);
+    }
 
     //% block="57 dot matrix initliallize CLK [CLKPIN] DIO [DIOPIN]" blockType="command"
     //% CLKPIN.shadow="dropdown" CLKPIN.options="PIN_DigitalWrite"
@@ -228,40 +246,40 @@ namespace dotmatrix57 {
     //% block="button [BUTTON] is pressed?" blockType="boolean"
     //% Flag.shadow="boolean"
     //% BUTTON.shadow="dropdown" BUTTON.options="BTN" BUTTON.defl="BTN.A"
-    export function buttonIsPressed(parameter: any, block: any) {
-        let button = parameter.BUTTON.code.replace("+"
-    ");
-        let code;
-        if(Generator.board === 'microbit'){
-            if (button === 'A') {
-                code = `Button_A.isPressed() && !Button_B.isPressed()`;
-            } else if (button === 'B') {
-                code = `Button_B.isPressed() && !Button_A.isPressed()`;
-            } else {
-                code = `Button_AB.isPressed()`;
-            }
-            Generator.addCode([code, Generator.ORDER_UNARY_POSTFIX]);
-        }else{
-            code = `button${button}.isPressed()`;
-            Generator.addInclude('MPython', '#include <MPython.h>');
-            Generator.addSetupMainTop("mPython.begin"
-    mPython.begin();");
-            Generator.addCode([code, Generator.ORDER_UNARY_POSTFIX]);
-        }
-    }
+    // export function buttonIsPressed(parameter: any, block: any) {
+    //     let button = parameter.BUTTON.code.replace("+"
+    // ");
+    //     let code;
+    //     if(Generator.board === 'microbit'){
+    //         if (button === 'A') {
+    //             code = `Button_A.isPressed() && !Button_B.isPressed()`;
+    //         } else if (button === 'B') {
+    //             code = `Button_B.isPressed() && !Button_A.isPressed()`;
+    //         } else {
+    //             code = `Button_AB.isPressed()`;
+    //         }
+    //         Generator.addCode([code, Generator.ORDER_UNARY_POSTFIX]);
+    //     }else{
+    //         code = `button${button}.isPressed()`;
+    //         Generator.addInclude('MPython', '#include <MPython.h>');
+    //         Generator.addSetupMainTop("mPython.begin"
+    // mPython.begin();");
+    //         Generator.addCode([code, Generator.ORDER_UNARY_POSTFIX]);
+    //     }
+    // }
 
     //% block="not [Flag]" blockType="boolean"
     //% Flag.shadow="boolean"
-    export function notTrue(parameter: any) {
-        console.log("notTrue==", parameter);
-        let code: string = '!' + (parameter.Flag.code || 'false') + '';
-        Generator.addCode([code, Generator.ORDER_UNARY_POSTFIX]);
-    }
+    // export function notTrue(parameter: any) {
+    //     console.log("notTrue==", parameter);
+    //     let code: string = '!' + (parameter.Flag.code || 'false') + '';
+    //     Generator.addCode([code, Generator.ORDER_UNARY_POSTFIX]);
+    // }
 
-    function replace(str :string) {
-        return str.replace("+"
-    ");
-    }
+    // function replace(str :string) {
+    //     return str.replace("+"
+    // ");
+    // }
     /*
     //% block="AnalogWrite:[PIN_AnalogWrite],AnalogRead:[PIN_AnalogRead],DigitalWrite:[PIN_DigitalWrite],DigitalRead:[PIN_DigitalRead]" blockType="command"
     //% PIN_AnalogWrite.shadow="dropdownRound" PIN_AnalogWrite.options="PIN_AnalogWrite"

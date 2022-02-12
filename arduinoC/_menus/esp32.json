@@ -77,5 +77,19 @@
 			["O", "14"],
 			["N", "15"]
 		]
+	},
+	"PINMODE":{
+		"menu": [
+			
+			["INPUT", "INPUT"],
+			["OUTPUT", "OUTPUT"],
+			["PULLUP", "PULLUP"],
+			["INPUT_PULLUP", "INPUT_PULLUP"],
+			["PULLDOWN", "PULLDOWN"],
+			["INPUT_PULLDOWN", "INPUT_PULLDOWN"],
+			["OPEN_DRAIN", "OPEN_DRAIN"],
+			["OUTPUT_OPEN_DRAIN", "OUTPUT_OPEN_DRAIN"],
+			["SPECIAL", "SPECIAL"]
+		]
 	}
 }

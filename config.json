@@ -1,11 +1,11 @@
 {
   "name": {
-    "zh-cn": "5x7 点阵显示",
-    "en": "5x7 dot matrix display"
+    "zh-cn": "yfrobottest",
+    "en": "yfrobottest"
   },
   "description": {
-    "zh-cn": "5x7 点阵显示",
-    "en": "5x7 dot matrix display"
+    "zh-cn": "yfrobottest ext",
+    "en": "yfrobottest ext"
   },
   "author": "YFROBOT",
   "email": "yfrobot@qq.com",
@@ -13,21 +13,21 @@
   "isBoard": false,
   "id": "yfrobot",
   "version": "0.0.1",
-  "platform": [
-    "win",
-    "mac",
-    "web"
-  ],
+  "platform": [ "win", "mac", "web" ],
   "asset": {
     "arduinoC": {
       "dir": "arduinoC/",
       "version": "0.0.1",
-      "board": [
-        "microbit",
-        "esp32",
-        "arduino"
-      ],
-      "main": "main.ts"
+      "board": [ "microbit", "esp32", "arduino" ],
+      "main": "main.ts",
+      "files": [ 
+        "_menus/arduino.json",
+        "_menus/arduinonano.json",
+        "_menus/esp32.json",
+        "_menus/leonardo.json",
+        "_menus/mega2560.json",
+        "_menus/microbit.json"
+    ]
     }
   }
 }

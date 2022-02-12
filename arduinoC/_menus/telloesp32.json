@@ -63,19 +63,5 @@
 			["OUTPUT_OPEN_DRAIN", "OUTPUT_OPEN_DRAIN"],
 			["SPECIAL", "SPECIAL"]
 		]
-	},
-	"MODE":{
-		"menu":[
-			["LOOP","LOOP"],
-			["PASSWORD","PASSWORD"],
-			["BUTTON","BUTTON"]
-		]
-	}
-	,
-	"MICMODE":{
-		"menu":[
-			["MIC","MIC"],
-			["MONO","MONO"]
-		]
 	}
 }
