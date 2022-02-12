@@ -25,13 +25,6 @@ enum BTN {
     AB
 }
 
-enum ODMONOFF {
-    //% block="OFF"
-    LOW,
-    //% block="ON"
-    HIGH
-}
-
 enum KAIGUAN {
     //% block="开"
     HIGH,
@@ -82,11 +75,18 @@ enum PIN_DWrite {
     A5
 }
 
+enum ODMONOFF {
+    //% block="OFF"
+    LOW,
+    //% block="ON"
+    HIGH
+}
+
 enum OUTPUTMODULEDIGITAL {
     //% block="LED"
     LED,
-    //% block="Buzzer"
-    BUZZER_Active,
+    //% block="Active Buzzer"
+    BUZZERACTIVE,
     //% block="Fan"
     FAN,
     //% block="Vibration Motor"
@@ -105,9 +105,9 @@ enum OUTPUTMODULEANALOG {
 }
 
 //% color="#4d9721" iconWidth=50 iconHeight=40
-namespace dotmatrix57 {
+namespace yfrobotmodule {
 
-    //% block="set [OUTPUTMODULEDIGITAL] on [ODMPIN] [ODMSTATE]" blockType="command"
+    //% block="set [OUTPUTMODULEDIGITAL] on [ODMPIN] output [ODMSTATE]" blockType="command"
     //% OUTPUTMODULEDIGITAL.shadow="dropdownRound" OUTPUTMODULEDIGITAL.options="OUTPUTMODULEDIGITAL" OUTPUTMODULEDIGITAL.defl="LED"
     //% ODMPIN.shadow="dropdown" ODMPIN.options="PIN_DigitalWrite"
     //% ODMSTATE.shadow="dropdown" ODMSTATE.options="ODMONOFF" ODMSTATE.defl="HIGH"
@@ -118,7 +118,7 @@ namespace dotmatrix57 {
         Generator.addCode(`digitalWrite(${outputModulePin},${outputModuleState});`);
     }
 
-    //% block="set [OUTPUTMODULEANALOG] on [OAMPIN] [OAMSTATE]" blockType="command"
+    //% block="set [OUTPUTMODULEANALOG] on [OAMPIN] output [OAMSTATE]" blockType="command"
     //% OUTPUTMODULEANALOG.shadow="dropdownRound" OUTPUTMODULEANALOG.options="OUTPUTMODULEANALOG" OUTPUTMODULEANALOG.defl="LED"
     //% OAMPIN.shadow="dropdown" OAMPIN.options="PIN_AnalogWrite"
     //% OAMSTATE.shadow="range"   OAMSTATE.params.min=0    OAMSTATE.params.max=255    OAMSTATE.defl=200
