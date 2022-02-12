@@ -1,4 +1,4 @@
-Copyright (c) YFRobot Corporation
+Copyright (c) YFROBOT Corporation
 
 All rights reserved.
 

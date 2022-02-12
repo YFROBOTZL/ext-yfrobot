@@ -1,7 +1,7 @@
 {
   "name": {
-    "zh-cn": "yfrobottest",
-    "en": "yfrobottest"
+    "zh-cn": "模块",
+    "en": "Module"
   },
   "description": {
     "zh-cn": "yfrobottest ext",
@@ -11,7 +11,7 @@
   "email": "yfrobot@qq.com",
   "license": "MIT",
   "isBoard": false,
-  "id": "yfrobot",
+  "id": "yfrobot_output_module",
   "version": "0.0.1",
   "platform": [ "win", "mac", "web" ],
   "asset": {
@@ -19,15 +19,7 @@
       "dir": "arduinoC/",
       "version": "0.0.1",
       "board": [ "microbit", "esp32", "arduino" ],
-      "main": "main.ts",
-      "files": [ 
-        "_menus/arduino.json",
-        "_menus/arduinonano.json",
-        "_menus/esp32.json",
-        "_menus/leonardo.json",
-        "_menus/mega2560.json",
-        "_menus/microbit.json"
-    ]
+      "main": "main.ts"
     }
   }
 }

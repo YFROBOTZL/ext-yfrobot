@@ -25,7 +25,7 @@ enum BTN {
     AB
 }
 
-enum LEDONOFF {
+enum ODMONOFF {
     //% block="OFF"
     LOW,
     //% block="ON"
@@ -82,26 +82,51 @@ enum PIN_DWrite {
     A5
 }
 
-enum OUTPUTMODULE {
+enum OUTPUTMODULEDIGITAL {
     //% block="LED"
     LED,
-    //% block="FAN"
-    FAN
+    //% block="Buzzer"
+    BUZZER_Active,
+    //% block="Fan"
+    FAN,
+    //% block="Vibration Motor"
+    VIBRATIONMOTOR,
+    //% block="Relay"
+    RELAY
 }
 
+enum OUTPUTMODULEANALOG {
+    //% block="LED"
+    LED,
+    //% block="Fan"
+    FAN,
+    //% block="Vibration Motor"
+    VIBRATIONMOTOR
+}
 
 //% color="#4d9721" iconWidth=50 iconHeight=40
 namespace dotmatrix57 {
 
-    //% block="set [OUTPUTMODULE] on [LEDPIN] [LEDSTATE]" blockType="command"
-    //% OUTPUTMODULE.shadow="dropdownRound" OUTPUTMODULE.options="OUTPUTMODULE" OUTPUTMODULE.defl="LED"
-    //% LEDPIN.shadow="dropdown" LEDPIN.options="PIN_DigitalWrite"
-    //% LEDSTATE.shadow="dropdown" LEDSTATE.options="LEDONOFF" LEDSTATE.defl="HIGH"
-    export function outputModule(parameter: any, block: any) {
-        let outputModule = parameter.OUTPUTMODULE.code;
-        let outputModulePin = parameter.LEDPIN.code;
-        let outputModuleState = parameter.LEDSTATE.code;
+    //% block="set [OUTPUTMODULEDIGITAL] on [ODMPIN] [ODMSTATE]" blockType="command"
+    //% OUTPUTMODULEDIGITAL.shadow="dropdownRound" OUTPUTMODULEDIGITAL.options="OUTPUTMODULEDIGITAL" OUTPUTMODULEDIGITAL.defl="LED"
+    //% ODMPIN.shadow="dropdown" ODMPIN.options="PIN_DigitalWrite"
+    //% ODMSTATE.shadow="dropdown" ODMSTATE.options="ODMONOFF" ODMSTATE.defl="HIGH"
+    export function outputiDigitalModule(parameter: any, block: any) {
+        let outputModule = parameter.OUTPUTMODULEDIGITAL.code;
+        let outputModulePin = parameter.ODMPIN.code;
+        let outputModuleState = parameter.ODMSTATE.code;
         Generator.addCode(`digitalWrite(${outputModulePin},${outputModuleState});`);
+    }
+
+    //% block="set [OUTPUTMODULEANALOG] on [OAMPIN] [OAMSTATE]" blockType="command"
+    //% OUTPUTMODULEANALOG.shadow="dropdownRound" OUTPUTMODULEANALOG.options="OUTPUTMODULEANALOG" OUTPUTMODULEANALOG.defl="LED"
+    //% OAMPIN.shadow="dropdown" OAMPIN.options="PIN_AnalogWrite"
+    //% OAMSTATE.shadow="range"   OAMSTATE.params.min=0    OAMSTATE.params.max=255    OAMSTATE.defl=200
+    export function outputAnalogModule(parameter: any, block: any) {
+        let outputModule = parameter.OUTPUTMODULEANALOG.code;
+        let outputModulePin = parameter.OAMPIN.code;
+        let outputModuleState = parameter.OAMSTATE.code;
+        Generator.addCode(`analogWrite(${outputModulePin},${outputModuleState});`);
     }
 
     //% block="57 dot matrix initliallize CLK [CLKPIN] DIO [DIOPIN]" blockType="command"
@@ -144,15 +169,6 @@ namespace dotmatrix57 {
     export function setMatrix(parameter: any, block: any) {
         let dmarray = parameter.DMARRAY.code;
         Generator.addCode(`matrix57.set(${dmarray});`);
-    }
-
-    //% block="set Piranha LED [LEDSTATE] on [LEDPIN]" blockType="command"
-    //% LEDPIN.shadow="dropdown" LEDPIN.options="PIN_DigitalWrite"
-    //% LEDSTATE.shadow="dropdown" LEDSTATE.options="LEDONOFF" LEDSTATE.defl="HIGH"
-    export function LEDState(parameter: any, block: any) {
-        let ledPin = parameter.LEDPIN.code;
-        let ledState = parameter.LEDSTATE.code;
-        Generator.addCode(`digitalWrite(${ledPin},${ledState});`);
     }
 
     // block="when press [BUTTON]" blockType="hat"
